@@ -34,8 +34,17 @@ namespace HandIn1.Data
 
         public void Add(Adult adult)
         {
-            adult.Id = adults.Max(adult => adult.Id);
-            adult.Id++;
+
+            try
+            {
+                adult.Id = adults.Max(adult => adult.Id);
+                adult.Id++;
+            }
+            catch (Exception e)
+            {
+                adult.Id = 1;
+            }
+            
             adults.Add(adult);
             _fileContext.SaveChanges();
             

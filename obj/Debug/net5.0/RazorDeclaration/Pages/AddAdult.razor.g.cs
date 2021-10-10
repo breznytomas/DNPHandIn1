@@ -12,105 +12,105 @@ namespace HandIn1.Pages
     using System.Linq;
     using System.Threading.Tasks;
 #nullable restore
-#line 1 "C:\Users\brezn\RiderProjects\DNP\HandIn1\_Imports.razor"
+#line 1 "D:\CodingProjectsSchool\DNP\DNPHandIn1\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\brezn\RiderProjects\DNP\HandIn1\_Imports.razor"
+#line 2 "D:\CodingProjectsSchool\DNP\DNPHandIn1\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\brezn\RiderProjects\DNP\HandIn1\_Imports.razor"
+#line 3 "D:\CodingProjectsSchool\DNP\DNPHandIn1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\brezn\RiderProjects\DNP\HandIn1\_Imports.razor"
+#line 4 "D:\CodingProjectsSchool\DNP\DNPHandIn1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\brezn\RiderProjects\DNP\HandIn1\_Imports.razor"
+#line 5 "D:\CodingProjectsSchool\DNP\DNPHandIn1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\brezn\RiderProjects\DNP\HandIn1\_Imports.razor"
+#line 6 "D:\CodingProjectsSchool\DNP\DNPHandIn1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\brezn\RiderProjects\DNP\HandIn1\_Imports.razor"
+#line 7 "D:\CodingProjectsSchool\DNP\DNPHandIn1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\brezn\RiderProjects\DNP\HandIn1\_Imports.razor"
+#line 8 "D:\CodingProjectsSchool\DNP\DNPHandIn1\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\brezn\RiderProjects\DNP\HandIn1\_Imports.razor"
+#line 9 "D:\CodingProjectsSchool\DNP\DNPHandIn1\_Imports.razor"
 using HandIn1;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\brezn\RiderProjects\DNP\HandIn1\_Imports.razor"
+#line 10 "D:\CodingProjectsSchool\DNP\DNPHandIn1\_Imports.razor"
 using HandIn1.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\brezn\RiderProjects\DNP\HandIn1\Pages\AddAdult.razor"
+#line 4 "D:\CodingProjectsSchool\DNP\DNPHandIn1\Pages\AddAdult.razor"
 using HandIn1.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\brezn\RiderProjects\DNP\HandIn1\Pages\AddAdult.razor"
+#line 5 "D:\CodingProjectsSchool\DNP\DNPHandIn1\Pages\AddAdult.razor"
 using Microsoft.AspNetCore.Components;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\brezn\RiderProjects\DNP\HandIn1\Pages\AddAdult.razor"
+#line 6 "D:\CodingProjectsSchool\DNP\DNPHandIn1\Pages\AddAdult.razor"
 using Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\brezn\RiderProjects\DNP\HandIn1\Pages\AddAdult.razor"
+#line 7 "D:\CodingProjectsSchool\DNP\DNPHandIn1\Pages\AddAdult.razor"
 using System.Threading.Tasks.Dataflow;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\brezn\RiderProjects\DNP\HandIn1\Pages\AddAdult.razor"
+#line 8 "D:\CodingProjectsSchool\DNP\DNPHandIn1\Pages\AddAdult.razor"
 using System.Threading;
 
 #line default
@@ -125,7 +125,7 @@ using System.Threading;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 78 "C:\Users\brezn\RiderProjects\DNP\HandIn1\Pages\AddAdult.razor"
+#line 78 "D:\CodingProjectsSchool\DNP\DNPHandIn1\Pages\AddAdult.razor"
        
     Adult Adult = new Adult();
     Job job = new Job();

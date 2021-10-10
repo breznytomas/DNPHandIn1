@@ -13,76 +13,118 @@ namespace HandIn1.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\brezn\RiderProjects\DNP\HandIn1\_Imports.razor"
+#line 1 "D:\CodingProjectsSchool\DNP\DNPHandIn1\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\brezn\RiderProjects\DNP\HandIn1\_Imports.razor"
+#line 2 "D:\CodingProjectsSchool\DNP\DNPHandIn1\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\brezn\RiderProjects\DNP\HandIn1\_Imports.razor"
+#line 3 "D:\CodingProjectsSchool\DNP\DNPHandIn1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\brezn\RiderProjects\DNP\HandIn1\_Imports.razor"
+#line 4 "D:\CodingProjectsSchool\DNP\DNPHandIn1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\brezn\RiderProjects\DNP\HandIn1\_Imports.razor"
+#line 5 "D:\CodingProjectsSchool\DNP\DNPHandIn1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\brezn\RiderProjects\DNP\HandIn1\_Imports.razor"
+#line 6 "D:\CodingProjectsSchool\DNP\DNPHandIn1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\brezn\RiderProjects\DNP\HandIn1\_Imports.razor"
+#line 7 "D:\CodingProjectsSchool\DNP\DNPHandIn1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\brezn\RiderProjects\DNP\HandIn1\_Imports.razor"
+#line 8 "D:\CodingProjectsSchool\DNP\DNPHandIn1\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\brezn\RiderProjects\DNP\HandIn1\_Imports.razor"
+#line 9 "D:\CodingProjectsSchool\DNP\DNPHandIn1\_Imports.razor"
 using HandIn1;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\brezn\RiderProjects\DNP\HandIn1\_Imports.razor"
+#line 10 "D:\CodingProjectsSchool\DNP\DNPHandIn1\_Imports.razor"
 using HandIn1.Shared;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/")]
+#nullable restore
+#line 2 "D:\CodingProjectsSchool\DNP\DNPHandIn1\Pages\Index.razor"
+using System.Collections;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "D:\CodingProjectsSchool\DNP\DNPHandIn1\Pages\Index.razor"
+using System.Security.Authentication.ExtendedProtection;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\CodingProjectsSchool\DNP\DNPHandIn1\Pages\Index.razor"
+using HandIn1.Data;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "D:\CodingProjectsSchool\DNP\DNPHandIn1\Pages\Index.razor"
+using LoginExample.Authentication;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "D:\CodingProjectsSchool\DNP\DNPHandIn1\Pages\Index.razor"
+using Microsoft.VisualBasic;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "D:\CodingProjectsSchool\DNP\DNPHandIn1\Pages\Index.razor"
+using Models;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/AdultManager")]
     public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -90,6 +132,113 @@ using HandIn1.Shared;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 85 "D:\CodingProjectsSchool\DNP\DNPHandIn1\Pages\Index.razor"
+       
+    private IList<Models.Adult> _all_adults;
+    private IList<Models.Adult> _adults_to_show;
+
+    private string first_name_filter;
+    private string last_name_filter;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        _all_adults = IAdultAdapter.getAllAdults();
+        _adults_to_show = new List<Adult>(_all_adults);
+        
+    }
+
+
+    private void FilterByUserFirstName(ChangeEventArgs changeEventArgs)
+    {
+        first_name_filter = null;
+        try
+        {
+            first_name_filter = changeEventArgs.Value.ToString();
+        }
+        catch (Exception e)
+        {
+    // ignored
+        }
+        
+        ExecuteFilter();
+    }
+    
+    private void FilterByUserLastName(ChangeEventArgs changeEventArgs)
+    {
+        last_name_filter = null;
+        try
+        {
+            last_name_filter = changeEventArgs.Value.ToString();
+        }
+        catch (Exception e)
+        {
+    // ignored
+        }
+        ExecuteFilter();
+    }
+
+    private void ExecuteFilter()
+    {
+       
+        
+            _adults_to_show = _all_adults.Where(adult => (StringChainMatch(first_name_filter, adult.FirstName))&&(StringChainMatch(last_name_filter, adult.LastName))).ToList();
+    }
+   
+    
+    private void RemoveAdult(int adultID)
+    {
+       
+        
+            Adult adultToDelete = _all_adults.First(adult => adult.Id == adultID);
+            IAdultAdapter.Delete(adultToDelete);
+            _all_adults.Remove(adultToDelete);
+            _adults_to_show.Remove(adultToDelete);
+        
+        
+       
+    }
+
+    private bool StringChainMatch(string a, string b) //This method is responsible for making sure that filtering is not going to be done on exact match basis but instead on a string chain basis
+    {
+        if (a == null)
+        {
+            return true;
+        }
+        
+       a= a.ToLower();
+       a= a.Trim();
+       b= b.ToLower();
+       b= b.Trim();
+        
+        for (int i = 0; i < a.Length; i++)
+        {
+            try
+            {
+                if (a[i]!=b[i])
+                {
+                    return false;
+                }
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                return false;
+            }
+           
+            
+        }
+        return true;
+    }
+    
+        
+    
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IAdultAdapter IAdultAdapter { get; set; }
     }
 }
 #pragma warning restore 1591

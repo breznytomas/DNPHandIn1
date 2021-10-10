@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\brezn\\RiderProjects\\DNP\\HandIn1\\HandIn1.csproj",
+      "projectUniqueName": "D:\\CodingProjectsSchool\\DNP\\DNPHandIn1\\HandIn1.csproj",
       "projectName": "HandIn1",
-      "projectPath": "C:\\Users\\brezn\\RiderProjects\\DNP\\HandIn1\\HandIn1.csproj",
+      "projectPath": "D:\\CodingProjectsSchool\\DNP\\DNPHandIn1\\HandIn1.csproj",
       "packagesPath": "C:\\Users\\brezn\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\brezn\\RiderProjects\\DNP\\HandIn1\\obj\\",
+      "outputPath": "D:\\CodingProjectsSchool\\DNP\\DNPHandIn1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\brezn\\AppData\\Roaming\\NuGet\\NuGet.Config"
