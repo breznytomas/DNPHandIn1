@@ -1,0 +1,188 @@
+@page "/AdultManager"
+@using System.Collections;
+@using System.Security.Authentication.ExtendedProtection
+@using HandIn1.Data;
+@using LoginExample.Authentication
+@using Microsoft.VisualBasic;
+@using Models;
+@inject IAdultAdapter IAdultAdapter;
+@inject NavigationManager NavigationManager;
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+
+
+
+ <p> Filter by First name: <input type="text" @oninput="@((arg) => FilterByUserFirstName(arg))" style="width:30rem"/> </p>
+    <p> Filter by Last name: <input type="text" @oninput="@((arg) => FilterByUserLastName(arg))" style="width:30rem"/> </p>
+
+@if (_adults_to_show == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else if (!_adults_to_show.Any())
+{
+    <p>
+        <em>No items exist at the moment, add sum digga</em>
+    </p>
+}
+else
+    {
+       
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>First name</th>
+                <th>Last Name</th>
+                <th>Hair Color</th>
+                <th>Eye Color</th>
+                <th>Age</th>
+                <th>Weight</th>
+                <th>Height</th>
+                <th>Sex</th>
+                <th>Job Title</th>
+                <th>Salary</th>
+                <AuthorizeView Policy="SecurityLevel1">
+                <th>Delete</th>
+                </AuthorizeView>
+            </tr>
+            </thead>
+            
+            <tbody>
+            @foreach (var adult in _adults_to_show)
+            {
+                <tr>
+                     
+                    <td>@adult.Id</td>
+                    <td>@adult.FirstName</td>
+                    <td>@adult.LastName</td>
+                    <td>@adult.HairColor</td>
+                    <td>@adult.EyeColor</td>
+                    <td>@adult.Age</td>
+                    <td>@adult.Weight</td>
+                    <td>@adult.Height</td>
+                    <td>@adult.Sex</td>
+                    <td>@adult.JobTitle.JobTitle</td>
+                    <td>@adult.JobTitle.Salary</td>
+                    
+                  <AuthorizeView Policy="SecurityLevel1">
+                    <td><button @onclick="@(() => RemoveAdult(adult.Id))">
+                        <i class="oi oi-trash" style="color: red"></i>
+                    </button></td>
+                 </AuthorizeView>
+                   
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+
+
+
+
+@code {
+    private IList<Models.Adult> _all_adults;
+    private IList<Models.Adult> _adults_to_show;
+
+    private string first_name_filter;
+    private string last_name_filter;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        _all_adults = IAdultAdapter.getAllAdults();
+        _adults_to_show = new List<Adult>(_all_adults);
+        
+    }
+
+
+    private void FilterByUserFirstName(ChangeEventArgs changeEventArgs)
+    {
+        first_name_filter = null;
+        try
+        {
+            first_name_filter = changeEventArgs.Value.ToString();
+        }
+        catch (Exception e)
+        {
+    // ignored
+        }
+        
+        ExecuteFilter();
+    }
+    
+    private void FilterByUserLastName(ChangeEventArgs changeEventArgs)
+    {
+        last_name_filter = null;
+        try
+        {
+            last_name_filter = changeEventArgs.Value.ToString();
+        }
+        catch (Exception e)
+        {
+    // ignored
+        }
+        ExecuteFilter();
+    }
+
+    private void ExecuteFilter()
+    {
+       
+        
+            _adults_to_show = _all_adults.Where(adult => (StringChainMatch(first_name_filter, adult.FirstName))&&(StringChainMatch(last_name_filter, adult.LastName))).ToList();
+    }
+   
+    
+    private void RemoveAdult(int adultID)
+    {
+       
+        
+            Adult adultToDelete = _all_adults.First(adult => adult.Id == adultID);
+            IAdultAdapter.Delete(adultToDelete);
+            _all_adults.Remove(adultToDelete);
+            _adults_to_show.Remove(adultToDelete);
+        
+        
+       
+    }
+
+    private bool StringChainMatch(string a, string b) //This method is responsible for making sure that filtering is not going to be done on exact match basis but instead on a string chain basis
+    {
+        if (a == null)
+        {
+            return true;
+        }
+        
+       a= a.ToLower();
+       a= a.Trim();
+       b= b.ToLower();
+       b= b.Trim();
+        
+        for (int i = 0; i < a.Length; i++)
+        {
+            try
+            {
+                if (a[i]!=b[i])
+                {
+                    return false;
+                }
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                return false;
+            }
+           
+            
+        }
+        return true;
+    }
+    
+        
+    }
+    
+    
+    
+
+
+
